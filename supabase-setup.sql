@@ -28,6 +28,11 @@ CREATE TABLE IF NOT EXISTS enrollments (
 ALTER TABLE courses ENABLE ROW LEVEL SECURITY;
 ALTER TABLE enrollments ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Anyone can view courses" ON courses;
+DROP POLICY IF EXISTS "Users can view their own enrollments" ON enrollments;
+DROP POLICY IF EXISTS "Users can create their own enrollments" ON enrollments;
+DROP POLICY IF EXISTS "Users can delete their own enrollments" ON enrollments;
+
 -- Courses policies: Everyone can read, only authenticated users can see all
 CREATE POLICY "Anyone can view courses" ON courses
   FOR SELECT USING (true);
